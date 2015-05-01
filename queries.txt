@@ -1,0 +1,58 @@
+GET /?pretty
+GET /_nodes/settings?pretty=true
+
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /_cat/indices?v
+GET /logstash-apache-*/_mappings
+GET /_template/logstash-apache*
+GET /_nodes?plugin=true
+GET /_cluster/health?pretty
+
+POST /logstash-apache-*/_optimize?max_num_segments=1
+
+DELETE /_template/logstash-*
+DELETE /logstash-apache-*
+
+GET /logstash-apache-*/logs/_count
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET /logstash-apache-*/logs/_search
+{
+  "query": {
+    "match": {
+      "agent": "\"Pingdom.com_bot_version_1.4_(http://www.pingdom.com/)\""
+    }
+  }
+}
+
+GET /logstash-apache-*/logs/_search
+{
+  "query": {
+    "bool": {
+      "must_not": {
+        "match": {
+          "agent": "\"Pingdom.com_bot_version_1.4_(http://www.pingdom.com/)\""
+        }
+      }
+    }
+  }
+}
+
+PUT /_template/logstash-apache-*
+{
+  "template": "logstash-apache-*",
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  }
+}

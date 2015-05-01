@@ -1,0 +1,5 @@
+.bash_history
+.DS_Store
+.gem
+kibana-4.0.2-darwin-x64
+datasets/apache/.sincedb_apache

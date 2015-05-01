@@ -1,0 +1,6 @@
+docker run \
+ --name el2 \
+ -p 9201:9200 \
+ -p 9301:9300 \
+ -d \
+ okulik/elasticsearch

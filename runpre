@@ -1,0 +1,8 @@
+docker run \
+ --name pre \
+ -p 8000:8000 \
+ -v $HOME/elastic-rubyzg/presentation/images:/opt/presentation/images \
+ -v $HOME/elastic-rubyzg/presentation/slides:/opt/presentation/slides \
+ -v $HOME/elastic-rubyzg/presentation/index.html:/opt/presentation/index.html \
+ -d \
+ okulik/presentation
